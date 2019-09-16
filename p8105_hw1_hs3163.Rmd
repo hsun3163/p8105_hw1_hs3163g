@@ -70,26 +70,21 @@ convert the logical vector to a factor and then convert the result to numeric, a
 Answer:
 ```{r Problem1_Q4}
 #convert the logical vector to numeric, and multiply the random sample by the result
-Pb1_Q4_1<-as.numeric(problem1_df$vec_logical)* pull( problem1_df, vec_random_sample)
+Pb1_Q4_1<-as.numeric(pull( problem1_df, vec_logical))* pull( problem1_df, vec_random_sample)
 Pb1_Q4_1
 #For the false result, the product become zero. For the postive result, the orignin values are retained,
 
 
 #convert the logical vector to a factor, and multiply the random sample by the result
-as.factor(problem1_df$vec_logical)
-Pb1_Q4_2<-as.factor(problem1_df$vec_logical)* pull( problem1_df, vec_random_sample)
+Pb1_Q4_2<-as.factor(pull( problem1_df, vec_logical))* pull( problem1_df, vec_random_sample)
 Pb1_Q4_2
 #Since factor is not a numbner, therefore multipilication does not make sense.
 
 #convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result
-Pb1_Q4_3<-as.numeric(as.factor(problem1_df$vec_logical))* pull( problem1_df, vec_random_sample)
+Pb1_Q4_3<-as.numeric(as.factor(pull( problem1_df, vec_logical)))* pull( problem1_df, vec_random_sample)
 Pb1_Q4_3
 #Since, when converted to number, the levels of factors will be denoted by 1 and 2 instead of 0 and 1, the result will be different from the first command of this part.
 ```
-
-
-
-
 
 ## Problem 2
 
@@ -135,10 +130,12 @@ Make a scatterplot of y vs x; color points using the logical variable (adding co
 ```{r problem2 task 2 part 1}
 
 #scatterplot of y vs x; color points using the logical variable
-ggplot(problem2_df, #Input dataset
+#Define an object to contain it ince this graph is to be exported.
+problem2_task2_part1_scplot<-ggplot(problem2_df, #Input dataset
        aes(x = x, #Define variable that input
            y=y,
            color = vec_logical_sum_larger_than_1))+geom_point() # Define how color are devided and how datapot are arranged.
+problem2_task2_part1_scplot
 ```
 
 
@@ -149,6 +146,8 @@ ggplot(problem2_df, #Input dataset
        aes(x = x, #Define variable that input
            y=y,
            color = pb2_logic_num))+geom_point() # Define how color are devided and how datapot are arranged.
+
+
 
 ```
 
@@ -162,11 +161,16 @@ ggplot(problem2_df, #Input dataset
 
 ```
 
-For the logic and factor vector, the color scale is binary, while for the numerice vector,the color scale is continuouse.
+Comments on color scale: For the logic and factor vector, the color scale is binary with very constrast color, while for the numerice vector,the color scale is continuouse on one color spectrum. Therefore, when evaluating datas that are catalogical, it seems to be more desirable to use factor vector instead of numeric vector for a more distinct representation.
 
 
 Task 3:
 Export your first scatterplot to your project directory using ggsave.
-
+```{r}
+ggsave("problem2_task2_part1_scplot.png",
+       plot = problem2_task2_part1_scplot,
+       path = "/Users/haosun/Desktop/Columbia class/BISTP8105_data_science/Homework/1/p8105_hw1_hs3163g/"
+       )
+```
 
 
