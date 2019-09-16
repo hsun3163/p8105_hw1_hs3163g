@@ -12,8 +12,8 @@ library(ggplot2)
 ```
 
 ## Problem 1
-Task 1:
-Create a data frame comprised of:
+__Task 1:__
+__Create a data frame comprised of__:
 
 1. a random sample of size 8 from a standard Normal distribution
 2. a logical vector indicating whether elements of the sample are greater than 0
@@ -39,7 +39,7 @@ problem1_df = tibble(
 problem1_df
 ```
 
-Task 2: Try to take the mean of each variable in your dataframe. What works and what doesn’t?
+__Task 2: Try to take the mean of each variable in your dataframe. What works and what doesn’t?__
 Answer:
 ```{r Problem1_Q2}
 # Find the mean for each vector in the dataset
@@ -47,8 +47,8 @@ sapply(problem1_df, mean)
 # Means can be found for numeric or logical vector: vec_random_sample and vec_logical
 ```
 
-Task 3:
-  In some cases, you can explicitly convert variables from one type to another. Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?
+__Task 3:__
+  __In some cases, you can explicitly convert variables from one type to another. Write a code chunk that applies the as.numeric function to the logical, character, and factor variables (please show this chunk but not the output). What happens, and why? Does this help explain what happens when you try to take the mean?__
 
 Answer
 ```{r Problem1_Q3, eval = FALSE}
@@ -60,7 +60,7 @@ sapply(select(problem1_df,2:4),as.numeric)
 #It turns out that the as numeric.function works on the logical and factor vector but not the character one. This may be because for the logic vector, one can use number to illustrate the true/false state and for the factor vector, one can use number to indicate what level of the factor it is. However there are no sensible way to do it for the charactor vector. This explain why the charater can not be used to found mean, but did not explian why the factor cannot be used to find mean. 
 
 ```
-Task 4:
+__Task 4:__
 In a second code chunk:
 
 convert the logical vector to numeric, and multiply the random sample by the result
@@ -88,9 +88,7 @@ Pb1_Q4_3
 
 ## Problem 2
 
-Task 1:
-
-This problem focuses the use of inline R code, plotting, and the behavior of ggplot for variables of different types.
+__Task 1:This problem focuses the use of inline R code, plotting, and the behavior of ggplot for variables of different types.__
 
 Create a data frame comprised of:
 x: a random sample of size 500 from a standard Normal distribution
@@ -125,8 +123,7 @@ The median of x is `r median(pull( problem2_df, x))`
 The standard diviation of x is `r sd(pull( problem2_df, x))`
 The proportion of cases for which x + y > 1 is `r sum(pull( problem2_df, pb2_logic_num))/nrow(problem2_df)`
 
-Task 2:
-Make a scatterplot of y vs x; color points using the logical variable (adding color = ... inside of aes in your ggplot code should help). Make a second and third scatterplot that color points using the numeric and factor variables, respectively, and comment on the color scales.
+__Task 2:Make a scatterplot of y vs x; color points using the logical variable (adding color = ... inside of aes in your ggplot code should help). Make a second and third scatterplot that color points using the numeric and factor variables, respectively, and comment on the color scales.__
 ```{r problem2 task 2 part 1}
 
 #scatterplot of y vs x; color points using the logical variable
@@ -164,8 +161,7 @@ ggplot(problem2_df, #Input dataset
 Comments on color scale: For the logic and factor vector, the color scale is binary with very constrast color, while for the numerice vector,the color scale is continuouse on one color spectrum. Therefore, when evaluating datas that are catalogical, it seems to be more desirable to use factor vector instead of numeric vector for a more distinct representation.
 
 
-Task 3:
-Export your first scatterplot to your project directory using ggsave.
+__Task 3:Export your first scatterplot to your project directory using ggsave.__
 ```{r}
 ggsave("problem2_task2_part1_scplot.png",
        plot = problem2_task2_part1_scplot,
